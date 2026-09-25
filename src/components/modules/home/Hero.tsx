@@ -86,7 +86,7 @@ const Hero = () => {
         </div>
 
         {/* 2. Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[76px] font-extrabold tracking-[-0.03em] text-[#111116] leading-[1.15] sm:leading-[1.12] max-w-4xl mx-auto break-words">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[76px] font-extrabold tracking-[-0.03em] text-[#111116] leading-10 sm:leading-[1.12] max-w-4xl mx-auto break-words">
           Unified AI Workspace for{" "}
           <span className="inline-block">Creators</span>
         </h1>

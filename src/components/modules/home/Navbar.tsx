@@ -76,9 +76,17 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown (Floating Overlay) */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-neutral-200/80 shadow-xl flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-3 duration-200 z-50 sticky">
+        <>
+          {/* Backdrop click outside to dismiss */}
+          <div
+            className="fixed inset-0 z-40 bg-black/10 backdrop-blur-[1px] md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          <div className="md:hidden absolute top-full left-4 right-4 sm:left-6 sm:right-6 mt-2 p-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-neutral-200/80 shadow-[0_20px_40px_rgba(0,0,0,0.12)] flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-2 duration-200 z-50">
           {navItems.map((link) => (
             <Link
               key={link.name}
@@ -111,6 +119,7 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
+        </>
       )}
     </header>
   );

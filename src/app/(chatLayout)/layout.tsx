@@ -1,5 +1,6 @@
+import Sidebar from "@/components/modules/chat/Sidebar";
 import type { Metadata } from "next";
-import { Poppins, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Poppins } from "next/font/google";
 import "../globals.css";
 
 const poppins = Poppins({
@@ -24,7 +25,19 @@ export default function ChatLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <div className="flex min-h-screen bg-background">
+        {/* 1. Desktop Sidebar (Sticky left) */}
+        <aside className="hidden md:flex flex-col w-64 fixed inset-y-0 z-40 border-r border-border/30">
+          <Sidebar />
+        </aside>
+
+        {/* 2. Main Content Column */}
+        {/* <div className="flex-1 flex flex-col md:pl-64 min-w-0"> */}
+        <main className="flex-1 flex flex-col md:pl-64 min-w-0">
+          {children}
+        </main>
+        {/* </div> */}
+      </div>
     </html>
   );
 }

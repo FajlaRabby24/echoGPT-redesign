@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Affify AI",
+  title: "EchoGPT",
   description: "AI Powered Assistant",
 };
 

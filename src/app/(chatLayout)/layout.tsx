@@ -15,29 +15,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Affify AI",
+  title: "EchoGPT",
   description: "AI Powered Assistant",
 };
 
 export default function ChatLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <div className="flex min-h-screen bg-background">
-        {/* 1. Desktop Sidebar (Sticky left) */}
-        <aside className="hidden md:flex flex-col w-64 fixed inset-y-0 z-40 border-r border-border/30">
-          <Sidebar />
-        </aside>
+    <div className="flex min-h-screen bg-background">
+      {/* 1. Desktop Sidebar (Sticky left) */}
+      <aside className="hidden md:flex flex-col w-64 fixed inset-y-0 z-40 border-r border-border/30">
+        <Sidebar />
+      </aside>
 
-        {/* 2. Main Content Column */}
-        {/* <div className="flex-1 flex flex-col md:pl-64 min-w-0"> */}
-        <main className="flex-1 flex flex-col md:pl-64 min-w-0">
-          {children}
-        </main>
-        {/* </div> */}
-      </div>
-    </html>
+      {/* 2. Main Content Column */}
+      <main className="flex-1 flex flex-col md:pl-64 min-w-0">{children}</main>
+    </div>
   );
 }

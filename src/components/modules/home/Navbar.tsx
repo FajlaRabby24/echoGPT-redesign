@@ -10,7 +10,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="w-full relative z-50 pt-5 px-4 sm:px-8 max-w-7xl mx-auto">
+    <header className="w-full relative z-50 pt-4 sm:pt-5 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
         {/* Brand Logo */}
         <Link
@@ -64,7 +64,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-neutral-800 hover:bg-neutral-100 rounded-xl"
+            className="text-neutral-800 hover:bg-neutral-100 rounded-xl cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? (
@@ -78,7 +78,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-neutral-200/80 shadow-xl flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-3 duration-200">
+        <div className="md:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-neutral-200/80 shadow-xl flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-3 duration-200 z-50 sticky">
           {navItems.map((link) => (
             <Link
               key={link.name}

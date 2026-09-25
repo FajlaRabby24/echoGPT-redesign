@@ -283,7 +283,7 @@ const Hero = () => {
                       <code>
                         {"  "}
                         <span className="text-neutral-500">
-                          // Dynamically select optimal model for task
+                          {"// Dynamically select optimal model for task"}
                         </span>
                       </code>
                       <br />

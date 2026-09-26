@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { navItems } from "@/lib/navItems";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,8 +18,14 @@ const Navbar = () => {
           href="/"
           className="flex items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <div className="w-9 h-9 rounded-xl bg-neutral-950 text-white flex items-center justify-center shadow-sm">
-            <Zap className="w-4 h-4 fill-white" />
+          <div className="relative w-9 h-9 rounded-xl  flex items-center justify-center shadow-sm">
+            <Image
+              fill
+              alt="logo"
+              loading="eager"
+              src={"/EchoGPT.png"}
+              sizes="20px"
+            />
           </div>
           <span className="font-bold text-xl tracking-tight text-neutral-900 font-sans">
             EchoGPT
@@ -87,38 +94,38 @@ const Navbar = () => {
           />
 
           <div className="md:hidden absolute top-full left-4 right-4 sm:left-6 sm:right-6 mt-2 p-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-neutral-200/80 shadow-[0_20px_40px_rgba(0,0,0,0.12)] flex flex-col gap-2.5 animate-in fade-in slide-in-from-top-2 duration-200 z-50">
-          {navItems.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                link.active
-                  ? "bg-neutral-100 text-neutral-950 font-semibold"
-                  : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <div className="h-px bg-neutral-200/60 my-1" />
-          <div className="flex flex-col gap-2 pt-1">
-            <Link
-              href="/auth/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-xl transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/auth/signup"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-sm font-medium rounded-xl shadow-sm transition-colors"
-            >
-              Sign Up
-            </Link>
+            {navItems.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                  link.active
+                    ? "bg-neutral-100 text-neutral-950 font-semibold"
+                    : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="h-px bg-neutral-200/60 my-1" />
+            <div className="flex flex-col gap-2 pt-1">
+              <Link
+                href="/auth/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100 rounded-xl transition-colors"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/auth/signup"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2.5 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-sm font-medium rounded-xl shadow-sm transition-colors"
+              >
+                Sign Up
+              </Link>
+            </div>
           </div>
-        </div>
         </>
       )}
     </header>

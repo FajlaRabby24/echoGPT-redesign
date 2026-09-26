@@ -1,4 +1,4 @@
-import Sidebar from "@/components/modules/chat/Sidebar";
+import Sidebar from "@/components/modules/app/Sidebar";
 import type { Metadata } from "next";
 import "../globals.css";
 

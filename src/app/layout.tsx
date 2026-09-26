@@ -16,6 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "EchoGPT",
   description: "AI Powered Assistant",
+  icons: [
+    {
+      rel: "icon",
+      url: "/EchoGPT.svg",
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

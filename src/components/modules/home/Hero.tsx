@@ -6,9 +6,9 @@ import {
   Bot,
   CheckCircle2,
   ChevronRight,
+  Download,
   Layers,
   Paperclip,
-  Play,
   SlidersHorizontal,
   Star,
   Terminal,
@@ -68,27 +68,21 @@ const Hero = () => {
       {/* Main Hero Content */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-w-0 pt-6 sm:pt-14 lg:pt-16 pb-16 sm:pb-20">
         {/* 1. Top Announcement Pill */}
-        <div className="w-full flex justify-center mb-5 sm:mb-8">
-          <Link
-            href="/chat"
-            className="inline-flex max-w-full items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/85 hover:bg-white backdrop-blur-md border border-neutral-200/80 shadow-xs text-xs sm:text-sm font-medium text-neutral-800 transition-all hover:scale-[1.02] active:scale-[0.98] group cursor-pointer"
-          >
-            <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-ping shrink-0" />
-            <span className="font-semibold text-neutral-900 shrink-0">
-              EchoGPT 2.0
-            </span>
-            <span className="text-neutral-300 shrink-0">•</span>
-            <span className="text-neutral-600 truncate">
-              Multi-Model Orchestration is live
-            </span>
-            <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:translate-x-0.5 transition-transform shrink-0" />
-          </Link>
+        <div className=" flex justify-center mb-5 sm:mb-8 max-w-full items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/85 hover:bg-white backdrop-blur-md border border-neutral-200/80 shadow-xs text-xs sm:text-sm font-medium text-neutral-800 transition-all hover:scale-[1.02] active:scale-[0.98] ">
+          <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-ping shrink-0" />
+          <span className="font-semibold text-neutral-900 shrink-0">
+            EchoGPT 2.0
+          </span>
+          <span className="text-neutral-300 shrink-0">•</span>
+          <span className="text-neutral-600 truncate">
+            Multi-Model Orchestration is live
+          </span>
+          <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:translate-x-0.5 transition-transform shrink-0" />
         </div>
 
         {/* 2. Headline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[76px] font-extrabold tracking-[-0.03em] text-[#111116] leading-10 sm:leading-[1.12] max-w-4xl mx-auto break-words">
-          Unified AI Workspace for{" "}
-          <span className="inline-block">Creators</span>
+          Your AI Workspace for Smarter Workflows
         </h1>
 
         {/* 3. Subtitle */}
@@ -100,10 +94,10 @@ const Hero = () => {
         {/* 4. Dual CTAs */}
         <div className="mt-7 sm:mt-10 flex  items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto">
           <Link
-            href="/chat"
+            href="/app"
             className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 px-2 sm:px-9 py-2 sm:py-4 text-sm font-semibold text-white bg-[#4F46E5] hover:bg-[#4338CA] active:scale-[0.98] rounded-xl shadow-[0_10px_25px_-5px_rgba(79,70,229,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 border border-white/10 transition-all duration-200 cursor-pointer"
           >
-            <span>Launch App</span>
+            <span>Try EchoGPT</span>
             <ArrowRight
               size={16}
               className=" text-white/80 group-hover:translate-x-1 transition-transform duration-200"
@@ -114,8 +108,11 @@ const Hero = () => {
             href="#demo"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-2 sm:px-8 py-2 sm:py-4 text-sm  font-semibold text-neutral-800 bg-white/85 hover:bg-white active:scale-[0.98] backdrop-blur-md rounded-xl border border-neutral-200/90 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
           >
-            <Play className=" fill-neutral-800 text-neutral-800" size={12} />
-            <span>Watch Demo</span>
+            <Download
+              className=" fill-neutral-800 text-neutral-800"
+              size={12}
+            />
+            <span>Install Extension</span>
           </Link>
         </div>
 

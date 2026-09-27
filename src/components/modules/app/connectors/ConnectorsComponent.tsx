@@ -6,8 +6,10 @@ import {
   Check,
   RotateCw,
   Link2,
+  Plus,
 } from "lucide-react";
 import { ConnectorItem, DEFAULT_CONNECTORS } from "@/lib/connectorsData";
+import AddConnectorModal from "./AddConnectorModal";
 
 // Vector / official icons render helper
 function ConnectorIcon({ type }: { type: ConnectorItem["iconType"] }) {
@@ -105,6 +107,11 @@ export default function ConnectorsComponent() {
   const [connectors, setConnectors] = useState<ConnectorItem[]>(DEFAULT_CONNECTORS);
   const [connectingId, setConnectingId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const handleAddCustomConnector = (newConnector: ConnectorItem) => {
+    setConnectors((prev) => [newConnector, ...prev]);
+  };
 
   const handleToggleConnect = (id: string) => {
     setConnectingId(id);
@@ -130,8 +137,14 @@ export default function ConnectorsComponent() {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-6 sm:space-y-8 select-none">
+      <AddConnectorModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onAddConnector={handleAddCustomConnector}
+      />
+
       {/* ========================================================= */}
-      {/* 1. Header & Search Bar                                    */}
+      {/* 1. Header & Actions Toolbar                               */}
       {/* ========================================================= */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 pb-5">
         <div className="space-y-1">
@@ -148,16 +161,27 @@ export default function ConnectorsComponent() {
           </p>
         </div>
 
-        {/* Search Bar */}
-        <div className="relative w-full sm:w-64 shrink-0">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search connectors..."
-            className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm rounded-xl border border-neutral-200 bg-white placeholder:text-neutral-400 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
-          />
-          <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+        {/* Right Actions: Search Bar + Add Button */}
+        <div className="flex items-center gap-2.5 w-full sm:w-auto shrink-0">
+          <div className="relative flex-1 sm:w-60">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search connectors..."
+              className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm rounded-xl border border-neutral-200 bg-white placeholder:text-neutral-400 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
+            />
+            <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsAddModalOpen(true)}
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer shrink-0"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Add</span>
+          </button>
         </div>
       </div>
 

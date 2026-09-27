@@ -58,7 +58,7 @@ const Navbar = () => {
             Sign In
           </Link>
           <Link
-            href="/auth/signup"
+            href="/auth/register"
             className="bg-[#4F46E5] hover:bg-[#4338CA] active:scale-[0.98] text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-xs hover:shadow-md transition-all duration-200"
           >
             Sign Up
@@ -118,7 +118,7 @@ const Navbar = () => {
                 Sign In
               </Link>
               <Link
-                href="/auth/signup"
+                href="/auth/register"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-2.5 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-sm font-medium rounded-xl shadow-sm transition-colors"
               >

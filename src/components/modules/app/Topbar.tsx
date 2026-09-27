@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -8,20 +8,85 @@ import {
   Sparkles,
   Share2,
   HelpCircle,
+  LogOut,
+  User,
+  Settings,
+  Shield,
+  ChevronDown,
 } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 
 interface TopbarProps {
   onOpenMobileSidebar?: () => void;
 }
 
 export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Check auth cookies on mount and on storage/cookie change
+  const checkAuth = () => {
+    if (typeof document === "undefined") return;
+    const cookies = document.cookie.split(";").reduce((acc, c) => {
+      const [k, v] = c.trim().split("=");
+      if (k && v) acc[k] = decodeURIComponent(v);
+      return acc;
+    }, {} as Record<string, string>);
+
+    if (cookies.echogpt_is_logged_in === "true" || cookies.echogpt_auth_token) {
+      setIsLoggedIn(true);
+      setUserEmail(cookies.echogpt_user_email || "user@echogpt.ai");
+    } else {
+      setIsLoggedIn(false);
+      setUserEmail("");
+    }
+  };
+
+  useEffect(() => {
+    checkAuth();
+
+    // Close dropdown on outside click
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setProfileDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    // Clear cookies
+    document.cookie = "echogpt_is_logged_in=; path=/; max-age=0";
+    document.cookie = "echogpt_auth_token=; path=/; max-age=0";
+    document.cookie = "echogpt_user_email=; path=/; max-age=0";
+    document.cookie = "echogpt_auth_provider=; path=/; max-age=0";
+
+    setIsLoggedIn(false);
+    setUserEmail("");
+    setProfileDropdownOpen(false);
+    window.location.reload();
+  };
+
+  const displayName = userEmail
+    ? userEmail.split("@")[0].replace(/[._-]/g, " ")
+    : "Member";
+  const userInitial = displayName.charAt(0).toUpperCase() || "U";
+
   return (
     <header className="sticky top-0 z-30 h-14 bg-white/80 backdrop-blur-md border-b border-neutral-200/80 px-3 sm:px-6 flex items-center justify-between transition-all select-none">
       {/* ========================================================= */}
-      {/* 1. Left Section: Mobile Menu / Desktop Workspace Title   */}
+      {/* 1. Left Section: Mobile Menu / Brand Logo                 */}
       {/* ========================================================= */}
       <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-        {/* Mobile-only Menu Toggle & Brand Logo */}
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={onOpenMobileSidebar}
@@ -47,11 +112,10 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
             </span>
           </Link>
         </div>
-        
       </div>
 
       {/* ========================================================= */}
-      {/* 2. Right Section: Quick Actions & Sign In Button          */}
+      {/* 2. Right Section: Quick Actions, Pro Badge & Auth Profile */}
       {/* ========================================================= */}
       <div className="flex items-center gap-2 sm:gap-2.5">
         {/* Help / Docs Action Button */}
@@ -85,13 +149,98 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
           <span>Pro</span>
         </Link>
 
-        {/* Primary Action: Sign In Button (Styled exactly to match existing theme) */}
-        <Link
-          href="/auth/login"
-          className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
-        >
-          Sign In
-        </Link>
+        {/* Dynamic Auth Section: Profile Icon when logged in, Sign In when unauthenticated */}
+        {isLoggedIn ? (
+          <div className="relative" ref={dropdownRef}>
+            {/* User Profile Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+              className="flex items-center gap-2 p-1 sm:px-2 sm:py-1 rounded-full border border-neutral-200/80 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 shadow-2xs transition-all cursor-pointer group"
+            >
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-2 ring-white shadow-2xs">
+                {userInitial}
+              </div>
+              <span className="hidden sm:block text-xs font-semibold text-neutral-800 max-w-[100px] truncate capitalize">
+                {displayName}
+              </span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 transition-transform duration-200 ${
+                  profileDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Profile Dropdown Popover */}
+            <AnimatePresence>
+              {profileDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  className="absolute right-0 top-full mt-2 w-60 bg-white rounded-2xl border border-neutral-200/80 shadow-xl shadow-neutral-900/10 p-1.5 z-50 overflow-hidden"
+                >
+                  {/* Account Capsule */}
+                  <div className="p-2.5 border-b border-neutral-100 flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
+                      {userInitial}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold text-neutral-900 capitalize truncate">
+                        {displayName}
+                      </p>
+                      <p className="text-[11px] text-neutral-500 truncate">
+                        {userEmail}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Menu Items */}
+                  <div className="py-1 space-y-0.5">
+                    <Link
+                      href="/app"
+                      onClick={() => setProfileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 hover:bg-neutral-100 transition-colors"
+                    >
+                      <User className="w-4 h-4 text-neutral-500" />
+                      <span>Workspace</span>
+                    </Link>
+
+                    <Link
+                      href="/pricing"
+                      onClick={() => setProfileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 hover:bg-neutral-100 transition-colors"
+                    >
+                      <Sparkles className="w-4 h-4 text-indigo-600" />
+                      <span>Subscription & Plan</span>
+                    </Link>
+                  </div>
+
+                  {/* Logout Button */}
+                  <div className="pt-1 border-t border-neutral-100">
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                    >
+                      <LogOut className="w-4 h-4 text-red-500" />
+                      <span>Log out</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ) : (
+          /* Unauthenticated: Sign In Button */
+          <Link
+            href="/auth/login"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+          >
+            Sign In
+          </Link>
+        )}
       </div>
     </header>
   );

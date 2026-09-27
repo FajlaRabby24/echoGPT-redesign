@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -133,6 +133,30 @@ export default function Sidebar({
 }: SidebarProps) {
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const cookies = document.cookie.split(";").reduce((acc, c) => {
+      const [k, v] = c.trim().split("=");
+      if (k && v) acc[k] = decodeURIComponent(v);
+      return acc;
+    }, {} as Record<string, string>);
+
+    if (cookies.echogpt_is_logged_in === "true" || cookies.echogpt_auth_token) {
+      setIsLoggedIn(true);
+      setUserEmail(cookies.echogpt_user_email || "user@echogpt.ai");
+    } else {
+      setIsLoggedIn(false);
+      setUserEmail("");
+    }
+  }, []);
+
+  const displayName = userEmail
+    ? userEmail.split("@")[0].replace(/[._-]/g, " ")
+    : "Member";
+  const userInitial = displayName.charAt(0).toUpperCase() || "U";
 
   return (
     <div className="flex flex-col h-full w-full bg-white border-r border-neutral-200/80 select-none">
@@ -254,24 +278,36 @@ export default function Sidebar({
           )}
         </div>
 
-        {/* User Profile Mini Capsule */}
-        <div className="mt-3 pt-2.5 border-t border-neutral-200/80 flex items-center justify-between px-1">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-1 ring-neutral-200">
-              U
+        {/* User Profile Mini Capsule / Sign In */}
+        <div className="mt-3 pt-2.5 border-t border-neutral-200/80">
+          {isLoggedIn ? (
+            <div className="flex items-center justify-between px-1">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-1 ring-neutral-200 shadow-2xs">
+                  {userInitial}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-neutral-900 truncate capitalize">
+                    {displayName}
+                  </p>
+                  <p className="text-[10px] text-neutral-500 truncate">
+                    {userEmail}
+                  </p>
+                </div>
+              </div>
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-100 shrink-0">
+                PRO
+              </span>
             </div>
-            <div className="min-w-0">
-              <p className="text-xs font-bold text-neutral-900 truncate">
-                Alex Johnson
-              </p>
-              <p className="text-[10px] text-neutral-500 truncate">
-                alex@echogpt.live
-              </p>
-            </div>
-          </div>
-          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-100 shrink-0">
-            PRO
-          </span>
+          ) : (
+            <Link
+              href="/auth/login"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 w-full py-2 px-3 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold shadow-xs transition-colors"
+            >
+              Sign In to EchoGPT
+            </Link>
+          )}
         </div>
       </div>
     </div>

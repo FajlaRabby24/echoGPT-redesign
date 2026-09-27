@@ -1,6 +1,6 @@
 # EchoGPT Redesign
 
-A modern, responsive, and high-performance redesign of **EchoGPT** — a unified multi-model AI platform bringing together leading LLMs (EchoGPT 2.0, GPT-4o, Gemini 1.5 Pro, DeepSeek R1, Grok 2), generative image & video studios, side-by-side arena comparison, and specialized productivity tools into one cohesive, accessible workspace.
+A modern, responsive, and high-performance redesign of **EchoGPT** - a unified multi-model AI platform bringing together leading LLMs (EchoGPT 2.0, GPT-4o, Gemini 1.5 Pro, DeepSeek R1, Grok 2), generative image & video studios, side-by-side arena comparison, and specialized productivity tools into one cohesive, accessible workspace.
 
 ---
 
@@ -38,47 +38,47 @@ This repository represents an end-to-end frontend overhaul designed to deliver:
 - **Support & Feedback Portal**: Support channels, FAQ accordions, and direct verified contacts (WhatsApp, Email, Telegram, and developer portfolio redirection).
 
 ### 🚀 Application Workspace (`/app/*`)
-1. **`/app` — Unified Multi-Model Chat**:
+1. **`/app` - Unified Multi-Model Chat**:
    - Integrated dynamic prompt enhancer (`Rocket` mode) and voice dictation indicators.
    - In-box AI engine selector (EchoGPT 2.0, GPT-4o, Gemini 1.5 Pro, DeepSeek R1, Grok 2).
    - Instant starter prompts and curated prompt suggestion cards.
-2. **`/app/history` — Session & Chat History**:
+2. **`/app/history` - Session & Chat History**:
    - Filter chat sessions by specific AI model or search past discussions.
    - Clean empty states and quick new conversation triggers.
-3. **`/app/favorites` — Pinned Artifacts**:
+3. **`/app/favorites` - Pinned Artifacts**:
    - Cross-workspace bookmarking for saved chats, generated images, video creations, and prompt templates.
    - Category filtering (All, Chats, Images, Job Prompts).
-4. **`/app/image-studio` — Creative AI Image Studio**:
+4. **`/app/image-studio` - Creative AI Image Studio**:
    - Text-to-Image & Image-to-Image pipeline with reference photo uploads.
    - Aspect ratio selections (`1:1`, `9:16`, `16:9`, `4:3`) with dynamic credit burn calculation.
    - Quality variations selector (1 to 4 images) and high-resolution modal lightbox preview.
-5. **`/app/video-studio` — Neural Video Generation**:
+5. **`/app/video-studio` - Neural Video Generation**:
    - Initial frame attachment for Image-to-Video generation.
    - Duration settings (5s vs 10s) with live render cost breakdowns.
    - Video gallery with interactive hover previews and dedicated player modal.
-6. **`/app/compare` — Multi-Model Split Arena**:
+6. **`/app/compare` - Multi-Model Split Arena**:
    - Simultaneous side-by-side querying of up to 5 leading models.
    - Toggle between **Compare Arena** (multi-column split view) and **Focus View** (inspecting single model telemetry).
    - Response latency metrics, token consumption badges, and community best-answer voting.
-7. **`/app/resume` — AI Job Insight & ATS Optimizer**:
+7. **`/app/resume` - AI Job Insight & ATS Optimizer**:
    - Vacancy analysis, ATS keyword matching score, and tailored executive summaries.
    - Structured breakdown of strengths vs. high-impact resume enhancements.
-8. **`/app/sop` & `/app/sop/country` — Statement of Purpose Builder**:
+8. **`/app/sop` & `/app/sop/country` - Statement of Purpose Builder**:
    - Purpose-built academic templates (Academic, Research, Career Transition, Gap Year).
    - Destination country tailoring (USA, UK, Canada, Germany, Australia, Ireland) adhering to specific visa and admission protocols.
-9. **`/app/connectors` — External Platform & MCP Connectors**:
+9. **`/app/connectors` - External Platform & MCP Connectors**:
    - Integration directory (GitHub, Google Drive, Gmail, Google Calendar, Notion, Higgsfield).
    - Add Custom MCP Connector modal dialog with live URL validation and security disclaimers.
-10. **`/app/store` — EchoGPT AI App Directory**:
+10. **`/app/store` - EchoGPT AI App Directory**:
     - Browse and launch custom GPT workflows, specialized bots, and productivity tools.
-11. **`/app/api-platform` — Developer Platform Preview**:
+11. **`/app/api-platform` - Developer Platform Preview**:
     - Unified API gateway preview with developer early-access registration.
 
 ---
 
 ## 3. Technologies Used
 
-- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/) — Server Components, Client boundaries, nested layouts, and static optimization.
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/) - Server Components, Client boundaries, nested layouts, and static optimization.
 - **Library**: [React 19](https://react.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with `@custom-variant dark (&:is(.dark *))` support.
 - **Animations**: [Motion (Framer Motion v13)](https://motion.dev/) for layout transitions, animated tooltips, popovers, and dialogs.

@@ -92,7 +92,7 @@ export const aiToolsNavGroup: SidebarNavGroup = {
     {
       id: "sop-builder",
       label: "AI SOP Builder",
-      href: "/app/sop-builder",
+      href: "/app/sop",
       icon: FileSpreadsheet,
     },
   ],

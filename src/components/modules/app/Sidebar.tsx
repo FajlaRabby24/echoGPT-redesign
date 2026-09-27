@@ -42,16 +42,16 @@ const NavLink = ({
     <div
       className={`group flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 ${
         isActive
-          ? "bg-indigo-50/90 text-indigo-700 font-semibold shadow-2xs"
-          : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100/80"
+          ? "bg-indigo-50/90 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 font-semibold shadow-2xs"
+          : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-neutral-100 hover:bg-neutral-100/80 dark:hover:bg-neutral-800/60"
       }`}
     >
       <div className="flex items-center gap-2.5 min-w-0">
         <Icon
           className={`w-4 h-4 shrink-0 transition-colors ${
             isActive
-              ? "text-indigo-600"
-              : "text-neutral-500 group-hover:text-neutral-900"
+              ? "text-indigo-600 dark:text-indigo-400"
+              : "text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-200"
           }`}
         />
         <span className="truncate">{item.label}</span>
@@ -61,8 +61,8 @@ const NavLink = ({
         <span
           className={`text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${
             isActive
-              ? "bg-indigo-600 text-white"
-              : "bg-neutral-200/80 text-neutral-600"
+              ? "bg-indigo-600 dark:bg-indigo-500 text-white"
+              : "bg-neutral-200/80 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
           }`}
         >
           {item.badge}
@@ -159,9 +159,9 @@ export default function Sidebar({
   const userInitial = displayName.charAt(0).toUpperCase() || "U";
 
   return (
-    <div className="flex flex-col h-full w-full bg-white border-r border-neutral-200/80 select-none">
+    <div className="flex flex-col h-full w-full bg-white dark:bg-neutral-900 border-r border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 select-none">
       {/* 1. Header: Brand Logo & Optional Close Button on Mobile */}
-      <div className="p-4 sm:p-5 pb-3 flex items-center justify-between border-b border-neutral-100">
+      <div className="p-4 sm:p-5 pb-3 flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800">
         <Link
           href="/"
           onClick={onClose}
@@ -177,10 +177,10 @@ export default function Sidebar({
               className="object-contain"
             />
           </div>
-          <span className="font-bold text-base text-neutral-900 tracking-tight">
+          <span className="font-bold text-base text-neutral-900 dark:text-neutral-100 tracking-tight">
             EchoGPT
           </span>
-          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-indigo-50 text-indigo-600 border border-indigo-100">
+          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/60">
             2.0
           </span>
         </Link>
@@ -188,7 +188,7 @@ export default function Sidebar({
         {showCloseButton && onClose && (
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
             aria-label="Close sidebar"
           >
             <X className="w-4 h-4" />
@@ -209,7 +209,7 @@ export default function Sidebar({
       </div>
 
       {/* 3. Scrollable Navigation List */}
-      <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-3 space-y-5 scrollbar-thin scrollbar-thumb-neutral-200">
+      <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-3 space-y-5 scrollbar-thin scrollbar-thumb-neutral-200 dark:scrollbar-thumb-neutral-800">
         {/* Workspace Nav Group */}
         <NavSection
           group={workspaceNavGroup}
@@ -233,7 +233,7 @@ export default function Sidebar({
       </div>
 
       {/* 4. Bottom Divider & Utility Navigation */}
-      <div className="p-3 sm:p-4 border-t border-neutral-200/80 bg-neutral-50/50 space-y-1">
+      <div className="p-3 sm:p-4 border-t border-neutral-200/80 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/60 space-y-1">
         {/* Support & Settings */}
         <div className="space-y-0.5 mb-1">
           {utilityNavItems.map((item) => (
@@ -250,10 +250,10 @@ export default function Sidebar({
         <div className="pt-1">
           <button
             onClick={() => setMoreOpen(!moreOpen)}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/80 transition-colors cursor-pointer"
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100/80 dark:hover:bg-neutral-800/60 transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-2.5">
-              <MoreHorizontal className="w-4 h-4 text-neutral-500" />
+              <MoreHorizontal className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
               <span>More</span>
             </div>
             <ChevronDown
@@ -265,7 +265,7 @@ export default function Sidebar({
 
           {/* Sub-menu items */}
           {moreOpen && (
-            <div className="pl-3.5 pt-1 space-y-0.5 border-l border-neutral-200/80 ml-4.5 my-1">
+            <div className="pl-3.5 pt-1 space-y-0.5 border-l border-neutral-200/80 dark:border-neutral-800 ml-4.5 my-1">
               {moreNavItems.map((item) => (
                 <NavLink
                   key={item.id}
@@ -279,23 +279,23 @@ export default function Sidebar({
         </div>
 
         {/* User Profile Mini Capsule / Sign In */}
-        <div className="mt-3 pt-2.5 border-t border-neutral-200/80">
+        <div className="mt-3 pt-2.5 border-t border-neutral-200/80 dark:border-neutral-800">
           {isLoggedIn ? (
             <div className="flex items-center justify-between px-1">
               <div className="flex items-center gap-2.5 min-w-0">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-1 ring-neutral-200 shadow-2xs">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-1 ring-neutral-200 dark:ring-neutral-700 shadow-2xs">
                   {userInitial}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs font-bold text-neutral-900 truncate capitalize">
+                  <p className="text-xs font-bold text-neutral-900 dark:text-neutral-100 truncate capitalize">
                     {displayName}
                   </p>
-                  <p className="text-[10px] text-neutral-500 truncate">
+                  <p className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">
                     {userEmail}
                   </p>
                 </div>
               </div>
-              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-100 shrink-0">
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/60 shrink-0">
                 PRO
               </span>
             </div>

@@ -21,11 +21,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [mobileOpen]);
 
   return (
-    <div className="flex min-h-screen bg-[#FDFDFD] text-neutral-900">
+    <div className="flex min-h-screen bg-[#FDFDFD] dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-200">
       {/* ========================================================= */}
       {/* 1. Permanent Desktop Sidebar (lg screens and up)         */}
       {/* ========================================================= */}
-      <aside className="hidden lg:flex flex-col w-64 xl:w-72 fixed inset-y-0 z-40 border-r border-neutral-200/80">
+      <aside className="hidden lg:flex flex-col w-64 xl:w-72 fixed inset-y-0 z-40 border-r border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900">
         <Sidebar />
       </aside>
 

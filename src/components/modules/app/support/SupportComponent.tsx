@@ -41,7 +41,7 @@ export default function SupportComponent() {
       {/* ========================================================= */}
       <div className="text-center space-y-2">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900">
-          Talk with Our Team
+          Talk with Fajla Rabby
         </h1>
         <p className="text-xs sm:text-sm text-neutral-500 font-normal">
           Have questions or need assistance? Reach out directly to our engineering & product team.
@@ -88,31 +88,6 @@ export default function SupportComponent() {
         </span>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Facebook Card */}
-          <Link
-            href="https://www.facebook.com/fajla.rabby.305400"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/90 hover:border-blue-400 shadow-2xs hover:shadow-md transition-all duration-200 flex items-center justify-between group cursor-pointer"
-          >
-            <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-11 h-11 rounded-2xl bg-neutral-50 group-hover:bg-blue-50 border border-neutral-200/80 text-neutral-700 group-hover:text-blue-600 flex items-center justify-center transition-colors shrink-0 shadow-2xs">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              </div>
-              <div className="space-y-0.5 min-w-0">
-                <h3 className="font-bold text-sm sm:text-base text-neutral-900 group-hover:text-blue-600 transition-colors">
-                  Facebook
-                </h3>
-                <p className="text-xs text-neutral-400 font-normal truncate">
-                  Follow us on Facebook for the latest updates and news!
-                </p>
-              </div>
-            </div>
-
-            <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
-          </Link>
 
           {/* WhatsApp Card (Updated from Instagram) */}
           <Link

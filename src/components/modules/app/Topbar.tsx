@@ -15,6 +15,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 interface TopbarProps {
   onOpenMobileSidebar?: () => void;
@@ -82,7 +83,7 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
   const userInitial = displayName.charAt(0).toUpperCase() || "U";
 
   return (
-    <header className="sticky top-0 z-30 h-14 bg-white/80 backdrop-blur-md border-b border-neutral-200/80 px-3 sm:px-6 flex items-center justify-between transition-all select-none">
+    <header className="sticky top-0 z-30 h-14 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800 px-3 sm:px-6 flex items-center justify-between transition-all select-none">
       {/* ========================================================= */}
       {/* 1. Left Section: Mobile Menu / Brand Logo                 */}
       {/* ========================================================= */}
@@ -90,7 +91,7 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={onOpenMobileSidebar}
-            className="p-1.5 -ml-1 rounded-xl text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100/80 active:scale-95 transition-all cursor-pointer"
+            className="p-1.5 -ml-1 rounded-xl text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 active:scale-95 transition-all cursor-pointer"
             aria-label="Open sidebar menu"
           >
             <Menu className="w-5 h-5" />
@@ -107,7 +108,7 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
                 className="object-contain"
               />
             </div>
-            <span className="font-bold text-sm sm:text-base text-neutral-900 tracking-tight">
+            <span className="font-bold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 tracking-tight">
               EchoGPT
             </span>
           </Link>
@@ -118,10 +119,18 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
       {/* 2. Right Section: Quick Actions, Pro Badge & Auth Profile */}
       {/* ========================================================= */}
       <div className="flex items-center gap-2 sm:gap-2.5">
+        {/* Animated Theme Toggler directly inside Topbar */}
+        <AnimatedThemeToggler
+          variant="circle"
+          duration={400}
+          className="p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors cursor-pointer [&>svg]:w-4 [&>svg]:h-4"
+          title="Toggle Dark / Light Mode"
+        />
+
         {/* Help / Docs Action Button */}
         <Link
           href="/faq"
-          className="hidden sm:flex p-2 rounded-xl text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100/80 transition-colors"
+          className="hidden sm:flex p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors"
           title="Help & Support"
         >
           <HelpCircle className="w-4 h-4" />
@@ -134,7 +143,7 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
               navigator.clipboard.writeText(window.location.href);
             }
           }}
-          className="hidden sm:flex p-2 rounded-xl text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100/80 transition-colors cursor-pointer"
+          className="hidden sm:flex p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors cursor-pointer"
           title="Share conversation"
         >
           <Share2 className="w-4 h-4" />
@@ -143,9 +152,9 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
         {/* Upgrade / Pro Pill Badge */}
         <Link
           href="/pricing"
-          className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 hover:from-indigo-100 hover:to-violet-100 border border-indigo-200/60 text-indigo-700 text-xs font-semibold shadow-2xs transition-all"
+          className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-950/40 dark:to-violet-950/40 hover:from-indigo-100 hover:to-violet-100 dark:hover:from-indigo-900/50 dark:hover:to-violet-900/50 border border-indigo-200/60 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold shadow-2xs transition-all"
         >
-          <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+          <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
           <span>Pro</span>
         </Link>
 
@@ -156,16 +165,16 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
             <button
               type="button"
               onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-              className="flex items-center gap-2 p-1 sm:px-2 sm:py-1 rounded-full border border-neutral-200/80 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 shadow-2xs transition-all cursor-pointer group"
+              className="flex items-center gap-2 p-1 sm:px-2 sm:py-1 rounded-full border border-neutral-200/80 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 bg-white dark:bg-neutral-800 hover:bg-neutral-50/80 dark:hover:bg-neutral-700/80 shadow-2xs transition-all cursor-pointer group"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-2 ring-white shadow-2xs">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0 ring-2 ring-white dark:ring-neutral-800 shadow-2xs">
                 {userInitial}
               </div>
-              <span className="hidden sm:block text-xs font-semibold text-neutral-800 max-w-[100px] truncate capitalize">
+              <span className="hidden sm:block text-xs font-semibold text-neutral-800 dark:text-neutral-200 max-w-[100px] truncate capitalize">
                 {displayName}
               </span>
               <ChevronDown
-                className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 transition-transform duration-200 ${
+                className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-transform duration-200 ${
                   profileDropdownOpen ? "rotate-180" : ""
                 }`}
               />
@@ -179,18 +188,18 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 6, scale: 0.98 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="absolute right-0 top-full mt-2 w-60 bg-white rounded-2xl border border-neutral-200/80 shadow-xl shadow-neutral-900/10 p-1.5 z-50 overflow-hidden"
+                  className="absolute right-0 top-full mt-2 w-60 bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200/80 dark:border-neutral-700 shadow-xl shadow-neutral-900/10 p-1.5 z-50 overflow-hidden"
                 >
                   {/* Account Capsule */}
-                  <div className="p-2.5 border-b border-neutral-100 flex items-center gap-2.5">
+                  <div className="p-2.5 border-b border-neutral-100 dark:border-neutral-700 flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#4F46E5] to-indigo-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
                       {userInitial}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-bold text-neutral-900 capitalize truncate">
+                      <p className="text-xs font-bold text-neutral-900 dark:text-neutral-100 capitalize truncate">
                         {displayName}
                       </p>
-                      <p className="text-[11px] text-neutral-500 truncate">
+                      <p className="text-[11px] text-neutral-500 dark:text-neutral-400 truncate">
                         {userEmail}
                       </p>
                     </div>
@@ -201,30 +210,39 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
                     <Link
                       href="/app"
                       onClick={() => setProfileDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 hover:bg-neutral-100 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
                     >
-                      <User className="w-4 h-4 text-neutral-500" />
+                      <User className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
                       <span>Workspace</span>
                     </Link>
 
                     <Link
                       href="/pricing"
                       onClick={() => setProfileDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 hover:bg-neutral-100 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
                     >
-                      <Sparkles className="w-4 h-4 text-indigo-600" />
+                      <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                       <span>Subscription & Plan</span>
+                    </Link>
+
+                    <Link
+                      href="/app/settings"
+                      onClick={() => setProfileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                    >
+                      <Settings className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+                      <span>Settings</span>
                     </Link>
                   </div>
 
                   {/* Logout Button */}
-                  <div className="pt-1 border-t border-neutral-100">
+                  <div className="pt-1 border-t border-neutral-100 dark:border-neutral-700">
                     <button
                       type="button"
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors cursor-pointer"
                     >
-                      <LogOut className="w-4 h-4 text-red-500" />
+                      <LogOut className="w-4 h-4 text-red-500 dark:text-red-400" />
                       <span>Log out</span>
                     </button>
                   </div>

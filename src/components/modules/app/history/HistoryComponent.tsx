@@ -48,10 +48,10 @@ export default function HistoryComponent() {
       {/* 1. Header: Title & Subtitle (Faithfully matching image)   */}
       {/* ========================================================= */}
       <div className="text-center space-y-2.5 max-w-2xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100">
           My Chat History
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
+        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-normal leading-relaxed">
           Access your complete chat history across diverse topics and interactions with different models or characters.
         </p>
       </div>
@@ -67,9 +67,9 @@ export default function HistoryComponent() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search chat history..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-neutral-200/90 bg-white placeholder:text-neutral-400 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 shadow-2xs transition-all"
+            className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 shadow-2xs transition-all"
           />
-          <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Search className="w-4 h-4 text-neutral-400 dark:text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
 
         {/* Model Filter Dropdown */}
@@ -77,11 +77,11 @@ export default function HistoryComponent() {
           <button
             type="button"
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="w-full flex items-center justify-between px-4 py-2.5 rounded-2xl border border-neutral-200/90 bg-white hover:bg-neutral-50/80 text-xs sm:text-sm font-semibold text-neutral-800 shadow-2xs transition-all cursor-pointer"
+            className="w-full flex items-center justify-between px-4 py-2.5 rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:bg-neutral-50/80 dark:hover:bg-neutral-800 text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 shadow-2xs transition-all cursor-pointer"
           >
             <span>{selectedModel}</span>
             <ChevronDown
-              className={`w-4 h-4 text-neutral-400 transition-transform duration-200 ${
+              className={`w-4 h-4 text-neutral-400 dark:text-neutral-500 transition-transform duration-200 ${
                 dropdownOpen ? "rotate-180" : ""
               }`}
             />
@@ -95,7 +95,7 @@ export default function HistoryComponent() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.98 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
-                className="absolute right-0 top-full mt-1.5 w-full bg-white rounded-2xl border border-neutral-200/90 shadow-xl shadow-neutral-900/10 p-1.5 z-40 overflow-hidden"
+                className="absolute right-0 top-full mt-1.5 w-full bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200/90 dark:border-neutral-800 shadow-xl shadow-neutral-900/10 dark:shadow-neutral-950/40 p-1.5 z-40 overflow-hidden"
               >
                 <div className="space-y-0.5">
                   {MODELS_FILTER.map((m) => {
@@ -110,13 +110,13 @@ export default function HistoryComponent() {
                         }}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-left text-xs font-semibold transition-all cursor-pointer ${
                           isSelected
-                            ? "bg-indigo-50 text-indigo-900"
-                            : "text-neutral-700 hover:bg-neutral-100/70"
+                            ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-200"
+                            : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100/70 dark:hover:bg-neutral-800/70"
                         }`}
                       >
                         <span>{m}</span>
                         {isSelected && (
-                          <Check className="w-3.5 h-3.5 text-[#4F46E5]" />
+                          <Check className="w-3.5 h-3.5 text-[#4F46E5] dark:text-indigo-400" />
                         )}
                       </button>
                     );

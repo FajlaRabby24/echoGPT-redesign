@@ -17,12 +17,12 @@ export default function ResumeFeatureGrid({
           <div
             key={feat.id}
             onClick={() => onSelectFeature(feat)}
-            className="group relative p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200/80 hover:border-indigo-300 shadow-2xs hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer text-center flex flex-col justify-center items-center space-y-1.5"
+            className="group relative p-5 sm:p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 hover:border-indigo-300 dark:hover:border-indigo-500/60 shadow-2xs hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer text-center flex flex-col justify-center items-center space-y-1.5"
           >
-            <h3 className="font-bold text-sm sm:text-base text-neutral-900 group-hover:text-[#4F46E5] transition-colors">
+            <h3 className="font-bold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 group-hover:text-[#4F46E5] dark:group-hover:text-indigo-400 transition-colors">
               {feat.title}
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed max-w-xs">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-normal leading-relaxed max-w-xs">
               {feat.description}
             </p>
           </div>

@@ -21,29 +21,29 @@ export default function SuggestionCard({
   const Icon = suggestion.icon;
 
   return (
-    <div className="group relative w-full text-left p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/80 hover:border-indigo-300 shadow-2xs hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer flex flex-col justify-between select-none">
+    <div className="group relative w-full text-left p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 hover:border-indigo-300 dark:hover:border-indigo-600/50 shadow-2xs hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer flex flex-col justify-between select-none">
         {/* Card Top: Icon, Tag Badge, and Arrow Indicator */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-indigo-50/90 border border-indigo-100/80 text-indigo-600 flex items-center justify-center shadow-2xs group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-200 shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-indigo-50/90 dark:bg-indigo-950/50 border border-indigo-100/80 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shadow-2xs group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-200 shrink-0">
               <Icon className="w-4 h-4" />
             </div>
-            <span className="text-[11px] font-semibold text-neutral-500 bg-neutral-100/80 px-2 py-0.5 rounded-md border border-neutral-200/50">
+            <span className="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 bg-neutral-100/80 dark:bg-neutral-800/80 px-2 py-0.5 rounded-md border border-neutral-200/50 dark:border-neutral-700/50">
               {suggestion.tag}
             </span>
           </div>
 
-          <div className="w-6 h-6 rounded-lg bg-neutral-50 group-hover:bg-indigo-50 flex items-center justify-center text-neutral-400 group-hover:text-indigo-600 transition-colors shrink-0">
+          <div className="w-6 h-6 rounded-lg bg-neutral-50 dark:bg-neutral-800 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-950/60 flex items-center justify-center text-neutral-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors shrink-0">
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
           </div>
         </div>
 
         {/* Card Content: Title and Description */}
         <div className="space-y-1">
-          <h3 className="font-bold text-neutral-900 text-sm sm:text-base tracking-tight group-hover:text-indigo-600 transition-colors">
+          <h3 className="font-bold text-neutral-900 dark:text-neutral-100 text-sm sm:text-base tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
             {suggestion.title}
           </h3>
-          <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed line-clamp-2">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">
             {suggestion.description}
           </p>
         </div>

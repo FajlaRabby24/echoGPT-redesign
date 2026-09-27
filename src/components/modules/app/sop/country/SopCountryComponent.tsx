@@ -35,16 +35,16 @@ function SopCountryContent() {
       </div>
 
       {/* Selected Template Badge Banner */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-indigo-50/70 border border-indigo-100 flex items-center justify-between flex-wrap gap-3">
+      <div className="p-4 sm:p-5 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-between flex-wrap gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white border border-indigo-100 text-[#4F46E5] flex items-center justify-center font-bold shadow-2xs">
+          <div className="w-10 h-10 rounded-xl bg-white dark:bg-neutral-800 border border-indigo-100 dark:border-indigo-900/60 text-[#4F46E5] dark:text-indigo-400 flex items-center justify-center font-bold shadow-2xs">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#4F46E5]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#4F46E5] dark:text-indigo-400">
               Active Template
             </span>
-            <h2 className="text-base sm:text-lg font-bold text-neutral-900">
+            <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100">
               {currentTemplate.title}
             </h2>
           </div>
@@ -54,7 +54,7 @@ function SopCountryContent() {
           {currentTemplate.tags.map((t) => (
             <span
               key={t}
-              className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-white text-neutral-700 border border-neutral-200"
+              className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
             >
               {t}
             </span>
@@ -65,11 +65,11 @@ function SopCountryContent() {
       {/* Country Selection Section */}
       <div className="space-y-4">
         <div className="space-y-1">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 flex items-center gap-2">
-            <Globe2 className="w-5 h-5 text-[#4F46E5]" />
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+            <Globe2 className="w-5 h-5 text-[#4F46E5] dark:text-indigo-400" />
             <span>Select Destination Country</span>
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-500">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
             Tailor your {currentTemplate.title} statement according to specific national visa & admissions guidelines.
           </p>
         </div>
@@ -78,15 +78,15 @@ function SopCountryContent() {
           {COUNTRIES.map((c) => (
             <div
               key={c.id}
-              className="group p-4 rounded-2xl bg-white border border-neutral-200/90 hover:border-indigo-400 shadow-2xs hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-2"
+              className="group p-4 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 hover:border-indigo-400 dark:hover:border-indigo-500/60 shadow-2xs hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-2"
             >
               <div className="flex items-center gap-2.5">
                 <span className="text-2xl">{c.flag}</span>
                 <div>
-                  <h4 className="font-bold text-sm text-neutral-900 group-hover:text-[#4F46E5] transition-colors">
+                  <h4 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-[#4F46E5] dark:group-hover:text-indigo-400 transition-colors">
                     {c.name}
                   </h4>
-                  <p className="text-[11px] text-neutral-400">{c.desc}</p>
+                  <p className="text-[11px] text-neutral-400 dark:text-neutral-500">{c.desc}</p>
                 </div>
               </div>
             </div>

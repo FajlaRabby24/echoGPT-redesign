@@ -38,12 +38,12 @@ export default function VideoCreationsGallery({
       {/* ========================================================= */}
       {/* 1. Gallery Header & Category Filters                      */}
       {/* ========================================================= */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 dark:border-neutral-800 pb-4">
         <div>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
+          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">
             Your creations
           </h2>
-          <p className="text-xs text-neutral-500 mt-0.5">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
             Rendered with EchoGPT neural video engines
           </p>
         </div>
@@ -58,8 +58,8 @@ export default function VideoCreationsGallery({
                 onClick={() => setSelectedFilter(cat)}
                 className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   selectedFilter === cat
-                    ? "bg-neutral-900 text-white shadow-xs"
-                    : "text-neutral-600 bg-neutral-100/80 hover:bg-neutral-200/80"
+                    ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-xs"
+                    : "text-neutral-600 dark:text-neutral-400 bg-neutral-100/80 dark:bg-neutral-800 hover:bg-neutral-200/80 dark:hover:bg-neutral-700"
                 }`}
               >
                 {cat}
@@ -74,10 +74,10 @@ export default function VideoCreationsGallery({
       {/* ========================================================= */}
       {filteredCreations.length === 0 ? (
         <div className="py-20 flex flex-col items-center justify-center text-center space-y-3">
-          <div className="w-12 h-12 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-400 shadow-2xs">
+          <div className="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-400 dark:text-neutral-500 shadow-2xs">
             <Clapperboard className="w-5 h-5" />
           </div>
-          <p className="text-sm text-neutral-500 font-medium">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">
             Nothing here yet — describe a video above to get started.
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function VideoCreationsGallery({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col lg:flex-row"
+              className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col lg:flex-row border border-neutral-200/80 dark:border-neutral-800"
             >
               {/* Left Video Player */}
               <div className="relative w-full lg:w-3/5 bg-black flex items-center justify-center min-h-[260px] sm:min-h-[360px]">
@@ -130,15 +130,15 @@ export default function VideoCreationsGallery({
               </div>
 
               {/* Right Metadata & Controls */}
-              <div className="w-full lg:w-2/5 p-6 flex flex-col justify-between space-y-5 bg-white">
+              <div className="w-full lg:w-2/5 p-6 flex flex-col justify-between space-y-5 bg-white dark:bg-neutral-900">
                 <div className="space-y-4">
                   {/* Top Bar with model badge and close */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">
+                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">
                         {previewVideo.modelName}
                       </span>
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700">
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
                         {previewVideo.duration}
                       </span>
                     </div>
@@ -146,7 +146,7 @@ export default function VideoCreationsGallery({
                     <button
                       type="button"
                       onClick={() => setPreviewVideo(null)}
-                      className="p-1.5 rounded-full hover:bg-neutral-100 text-neutral-500 transition-colors cursor-pointer"
+                      className="p-1.5 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-500 dark:text-neutral-400 transition-colors cursor-pointer"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -154,24 +154,24 @@ export default function VideoCreationsGallery({
 
                   {/* Title & Prompt */}
                   <div className="space-y-1.5">
-                    <h3 className="font-bold text-base text-neutral-900">
+                    <h3 className="font-bold text-base text-neutral-900 dark:text-neutral-100">
                       {previewVideo.title}
                     </h3>
-                    <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block">
+                    <label className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider block">
                       Video Prompt
                     </label>
-                    <p className="text-xs sm:text-sm text-neutral-800 leading-relaxed bg-neutral-50 p-3 rounded-xl border border-neutral-100 max-h-40 overflow-y-auto font-normal">
+                    <p className="text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed bg-neutral-50 dark:bg-neutral-800/60 p-3 rounded-xl border border-neutral-100 dark:border-neutral-800 max-h-40 overflow-y-auto font-normal">
                       {previewVideo.prompt}
                     </p>
                   </div>
 
                   {/* Metadata Specs */}
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-100 flex items-center gap-2 text-neutral-600">
+                    <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
                       <Clock className="w-4 h-4 text-neutral-400" />
                       <span>{previewVideo.createdAt}</span>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-100 flex items-center gap-2 text-neutral-600">
+                    <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
                       <Coins className="w-4 h-4 text-amber-500" />
                       <span>{previewVideo.creditsUsed} credits used</span>
                     </div>
@@ -179,15 +179,15 @@ export default function VideoCreationsGallery({
                 </div>
 
                 {/* Bottom Actions */}
-                <div className="space-y-2 pt-4 border-t border-neutral-100">
+                <div className="space-y-2 pt-4 border-t border-neutral-100 dark:border-neutral-800">
                   <button
                     type="button"
                     onClick={() => handleCopy(previewVideo.prompt)}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-neutral-200 hover:bg-neutral-50 text-neutral-800 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
                   >
                     {copiedPrompt ? (
                       <>
-                        <Check className="w-4 h-4 text-emerald-600" />
+                        <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                         <span>Prompt Copied!</span>
                       </>
                     ) : (

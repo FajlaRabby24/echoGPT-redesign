@@ -76,28 +76,28 @@ export default function AddConnectorModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="relative w-full max-w-[480px] bg-white rounded-3xl border border-neutral-200/90 shadow-2xl shadow-neutral-900/15 p-6 sm:p-7 z-10 space-y-5"
+            className="relative w-full max-w-[480px] bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200/90 dark:border-neutral-800 shadow-2xl shadow-neutral-900/15 dark:shadow-neutral-950/50 p-6 sm:p-7 z-10 space-y-5"
           >
             {/* Header: Title and Close button */}
             <div className="flex items-center justify-between pb-1">
-              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-neutral-900">
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
                 Add custom connector
               </h2>
               <button
                 type="button"
                 onClick={onClose}
-                className="w-8 h-8 rounded-full border border-neutral-200/80 bg-neutral-50 hover:bg-neutral-100 text-neutral-400 hover:text-neutral-700 flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full border border-neutral-200/80 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Subtitle with links */}
-            <p className="text-xs sm:text-sm text-neutral-600 font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal leading-relaxed">
               Connect EchoGPT to your data and tools.{" "}
               <Link
                 href="/faq"
-                className="font-medium text-[#4F46E5] hover:text-[#4338CA] underline underline-offset-2"
+                className="font-medium text-[#4F46E5] dark:text-indigo-400 hover:text-[#4338CA] dark:hover:text-indigo-300 underline underline-offset-2"
               >
                 Learn more about connectors
               </Link>{" "}
@@ -105,7 +105,7 @@ export default function AddConnectorModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="font-medium text-[#4F46E5] hover:text-[#4338CA] underline underline-offset-2 cursor-pointer"
+                className="font-medium text-[#4F46E5] dark:text-indigo-400 hover:text-[#4338CA] dark:hover:text-indigo-300 underline underline-offset-2 cursor-pointer"
               >
                 pre-built ones
               </button>
@@ -124,9 +124,9 @@ export default function AddConnectorModal({
                     setError("");
                   }}
                   placeholder="Name"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200/90 bg-neutral-50/50 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200/90 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-800 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:bg-white dark:focus:bg-neutral-850 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
                 />
-                <p className="text-[11px] text-neutral-400">
+                <p className="text-[11px] text-neutral-400 dark:text-neutral-500">
                   Shown in the connectors list.
                 </p>
               </div>
@@ -141,16 +141,16 @@ export default function AddConnectorModal({
                     setError("");
                   }}
                   placeholder="MCP server URL"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200/90 bg-neutral-50/50 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200/90 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-800 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:bg-white dark:focus:bg-neutral-850 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
                 />
-                <p className="text-[11px] text-neutral-400 leading-normal">
+                <p className="text-[11px] text-neutral-400 dark:text-neutral-500 leading-normal">
                   The HTTPS address where the server accepts MCP requests, for example{" "}
-                  <span className="font-mono text-neutral-600">https://mcp.example.com/mcp</span>.
+                  <span className="font-mono text-neutral-600 dark:text-neutral-400">https://mcp.example.com/mcp</span>.
                 </p>
               </div>
 
               {/* Warning Notice matching screenshot */}
-              <div className="p-3 rounded-xl bg-neutral-50/80 border border-neutral-100 text-[11px] text-neutral-500 font-normal leading-relaxed space-y-1.5">
+              <div className="p-3 rounded-xl bg-neutral-50/80 dark:bg-neutral-800/60 border border-neutral-100 dark:border-neutral-800 text-[11px] text-neutral-500 dark:text-neutral-400 font-normal leading-relaxed space-y-1.5">
                 <p>
                   Only use connectors from developers you trust. EchoGPT does not control which tools developers make available and cannot verify that they will work as intended or that they won&apos;t change.
                 </p>
@@ -158,7 +158,7 @@ export default function AddConnectorModal({
                   Building an MCP server?{" "}
                   <Link
                     href="/faq"
-                    className="font-medium text-[#4F46E5] hover:text-[#4338CA] underline underline-offset-2"
+                    className="font-medium text-[#4F46E5] dark:text-indigo-400 hover:text-[#4338CA] dark:hover:text-indigo-300 underline underline-offset-2"
                   >
                     Report issues and subscribe to updates here
                   </Link>
@@ -174,7 +174,7 @@ export default function AddConnectorModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 rounded-xl border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-700 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>

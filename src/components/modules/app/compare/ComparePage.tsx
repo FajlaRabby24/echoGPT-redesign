@@ -103,7 +103,7 @@ export default function ComparePage() {
           )}
 
           {/* Subtitle matching screenshots */}
-          <p className="text-sm sm:text-base text-neutral-500 font-normal">
+          <p className="text-sm sm:text-base text-neutral-500 dark:text-neutral-400 font-normal">
             Ask one question and see how 5 models answer it.
           </p>
         </div>

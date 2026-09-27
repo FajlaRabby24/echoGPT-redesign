@@ -146,17 +146,17 @@ export default function ConnectorsComponent() {
       {/* ========================================================= */}
       {/* 1. Header & Actions Toolbar                               */}
       {/* ========================================================= */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 dark:border-neutral-800 pb-5">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900">
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
               Connected Apps & Services
             </h1>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-50 text-[#4F46E5] border border-indigo-100">
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-[#4F46E5] dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/60">
               Live
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-neutral-500 font-normal">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-normal">
             Grant permission to external platforms to query live documentation, sync schedules, and trigger pipelines.
           </p>
         </div>
@@ -169,9 +169,9 @@ export default function ConnectorsComponent() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search connectors..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm rounded-xl border border-neutral-200 bg-white placeholder:text-neutral-400 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
+              className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-all"
             />
-            <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-neutral-400 dark:text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           <button
@@ -186,18 +186,18 @@ export default function ConnectorsComponent() {
       </div>
 
       {/* ========================================================= */}
-      {/* 2. Connectors Data Table (Light Theme)                    */}
+      {/* 2. Connectors Data Table (Light & Dark Theme)              */}
       {/* ========================================================= */}
-      <div className="w-full bg-white rounded-2xl border border-neutral-200/90 shadow-2xs overflow-hidden">
+      <div className="w-full bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200/90 dark:border-neutral-800 shadow-2xs overflow-hidden">
         {/* Table Header */}
-        <div className="grid grid-cols-12 px-5 py-3 border-b border-neutral-100 bg-neutral-50/50 text-[11px] font-bold uppercase tracking-wider text-neutral-400 select-none">
+        <div className="grid grid-cols-12 px-5 py-3 border-b border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-400 text-[11px] font-bold uppercase tracking-wider text-black dark:text-white select-none">
           <div className="col-span-8 sm:col-span-6">Connector</div>
           <div className="col-span-2 sm:col-span-3 text-center sm:text-left">Type</div>
           <div className="col-span-2 sm:col-span-3 text-right">Status</div>
         </div>
 
         {/* Table Rows */}
-        <div className="divide-y divide-neutral-100">
+        <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
           {filteredConnectors.map((connector) => {
             const isConnected = connector.status === "connected";
             const isLoading = connectingId === connector.id;
@@ -205,16 +205,16 @@ export default function ConnectorsComponent() {
             return (
               <div
                 key={connector.id}
-                className="grid grid-cols-12 items-center px-4 sm:px-5 py-3.5 sm:py-4 hover:bg-neutral-50/60 transition-colors"
+                className="grid grid-cols-12 items-center px-4 sm:px-5 py-3.5 sm:py-4 hover:bg-neutral-50/60 dark:hover:bg-neutral-850/40 transition-colors"
               >
                 {/* Column 1: Connector Icon & Name */}
                 <div className="col-span-8 sm:col-span-6 flex items-center gap-3 min-w-0 pr-2">
                   <ConnectorIcon type={connector.iconType} />
                   <div className="min-w-0">
-                    <h3 className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">
+                    <h3 className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 truncate">
                       {connector.name}
                     </h3>
-                    <p className="hidden sm:block text-[11px] text-neutral-400 truncate">
+                    <p className="hidden sm:block text-[11px] text-neutral-400 dark:text-neutral-500 truncate">
                       {connector.description}
                     </p>
                   </div>
@@ -222,11 +222,11 @@ export default function ConnectorsComponent() {
 
                 {/* Column 2: Type & Custom Badge */}
                 <div className="col-span-2 sm:col-span-3 flex items-center gap-1.5 text-center sm:text-left">
-                  <span className="text-xs font-medium text-neutral-600">
+                  <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
                     {connector.type}
                   </span>
                   {connector.isCustom && (
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-500 border border-neutral-200/60">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 border border-neutral-200/60 dark:border-neutral-700">
                       Custom
                     </span>
                   )}
@@ -240,7 +240,7 @@ export default function ConnectorsComponent() {
                     onClick={() => handleToggleConnect(connector.id)}
                     className={`inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
                       isConnected
-                        ? "bg-emerald-50 text-emerald-700 border border-emerald-200/80 hover:bg-emerald-100/80"
+                        ? "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800 hover:bg-emerald-100/80 dark:hover:bg-emerald-950/80"
                         : "bg-[#4F46E5] hover:bg-[#4338CA] text-white shadow-xs hover:shadow-md active:scale-95"
                     }`}
                   >
@@ -248,7 +248,7 @@ export default function ConnectorsComponent() {
                       <RotateCw className="w-3.5 h-3.5 animate-spin" />
                     ) : isConnected ? (
                       <>
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         <span>Connected</span>
                       </>
                     ) : (
@@ -261,7 +261,7 @@ export default function ConnectorsComponent() {
           })}
 
           {filteredConnectors.length === 0 && (
-            <div className="py-12 text-center text-xs text-neutral-400">
+            <div className="py-12 text-center text-xs text-neutral-400 dark:text-neutral-500">
               No connectors found matching &quot;{searchQuery}&quot;
             </div>
           )}

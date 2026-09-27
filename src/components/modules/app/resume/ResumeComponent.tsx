@@ -71,31 +71,31 @@ export default function ResumeComponent() {
         {/* ========================================================= */}
         {analysisResult && (
           <div className="w-full max-w-4xl mx-auto px-4 select-text">
-            <div className="rounded-2xl bg-white border border-neutral-200/90 shadow-md p-5 sm:p-7 space-y-6">
+            <div className="rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-md p-5 sm:p-7 space-y-6">
               {/* Header Match Score */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 dark:border-neutral-800 pb-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#4F46E5] bg-indigo-50 px-2.5 py-0.5 rounded-full">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#4F46E5] dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-0.5 rounded-full">
                       AI Job Match Report
                     </span>
-                    <span className="text-xs text-neutral-400">· Real-time</span>
+                    <span className="text-xs text-neutral-400 dark:text-neutral-500">· Real-time</span>
                   </div>
-                  <h2 className="text-base sm:text-lg font-bold text-neutral-900">
+                  <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100">
                     {analysisResult.role}
                   </h2>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <div className="text-right">
-                    <p className="text-[10px] uppercase font-bold text-neutral-400">
+                    <p className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-500">
                       Profile Match
                     </p>
-                    <p className="text-xl font-black text-emerald-600">
+                    <p className="text-xl font-black text-emerald-600 dark:text-emerald-400">
                       {analysisResult.matchScore}%
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
                     <CheckCircle2 className="w-5 h-5" />
                   </div>
                 </div>
@@ -103,11 +103,11 @@ export default function ResumeComponent() {
 
               {/* Tailored Summary */}
               <div className="space-y-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-[#4F46E5]" />
+                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5 text-[#4F46E5] dark:text-indigo-400" />
                   Tailored Executive Summary
                 </h4>
-                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed bg-neutral-50/80 p-3.5 rounded-xl border border-neutral-100">
+                <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed bg-neutral-50/80 dark:bg-neutral-800/60 p-3.5 rounded-xl border border-neutral-100 dark:border-neutral-800">
                   {analysisResult.tailoredSummary}
                 </p>
               </div>
@@ -115,15 +115,15 @@ export default function ResumeComponent() {
               {/* Two Column Grid: Strengths vs Skill Gaps */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Identified Strengths */}
-                <div className="space-y-2 p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100/70">
-                  <h4 className="text-xs font-bold text-emerald-800 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="space-y-2 p-3.5 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-100/70 dark:border-emerald-900/40">
+                  <h4 className="text-xs font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     Key Matched Strengths
                   </h4>
-                  <ul className="space-y-1.5 text-xs text-emerald-900/80">
+                  <ul className="space-y-1.5 text-xs text-emerald-900/80 dark:text-emerald-200/80">
                     {analysisResult.strengths.map((s, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
-                        <span className="text-emerald-500 font-bold">•</span>
+                        <span className="text-emerald-500 dark:text-emerald-400 font-bold">•</span>
                         <span>{s}</span>
                       </li>
                     ))}
@@ -131,15 +131,15 @@ export default function ResumeComponent() {
                 </div>
 
                 {/* Skill Gaps / Recommendation */}
-                <div className="space-y-2 p-3.5 rounded-xl bg-amber-50/50 border border-amber-100/70">
-                  <h4 className="text-xs font-bold text-amber-800 flex items-center gap-1.5">
-                    <Target className="w-3.5 h-3.5 text-amber-600" />
+                <div className="space-y-2 p-3.5 rounded-xl bg-amber-50/50 dark:bg-amber-950/30 border border-amber-100/70 dark:border-amber-900/40">
+                  <h4 className="text-xs font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                    <Target className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                     High-Impact Enhancements
                   </h4>
-                  <ul className="space-y-1.5 text-xs text-amber-900/80">
+                  <ul className="space-y-1.5 text-xs text-amber-900/80 dark:text-amber-200/80">
                     {analysisResult.gaps.map((g, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
-                        <span className="text-amber-500 font-bold">•</span>
+                        <span className="text-amber-500 dark:text-amber-400 font-bold">•</span>
                         <span>{g}</span>
                       </li>
                     ))}
@@ -148,15 +148,15 @@ export default function ResumeComponent() {
               </div>
 
               {/* Top Required Skills Tags */}
-              <div className="space-y-2 pt-2 border-t border-neutral-100">
-                <span className="text-xs font-bold text-neutral-600">
+              <div className="space-y-2 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400">
                   Essential Keywords for ATS Optimization:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {analysisResult.keySkills.map((sk) => (
                     <span
                       key={sk}
-                      className="text-xs font-medium px-2.5 py-1 rounded-lg bg-neutral-100 text-neutral-700 border border-neutral-200/60"
+                      className="text-xs font-medium px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-neutral-700"
                     >
                       {sk}
                     </span>

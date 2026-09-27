@@ -31,24 +31,24 @@ export default function ModelComparisonGrid({
   return (
     <div className="w-full max-w-7xl mx-auto px-4 pt-4 pb-12 space-y-5">
       {/* Comparison Arena Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-100 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-100 dark:border-neutral-800 pb-3">
         <div className="space-y-0.5">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">
               {mode === "compare" ? "Multi-Model Split Arena" : "Focused Inspection"}
             </span>
-            <span className="text-xs text-neutral-400">
+            <span className="text-xs text-neutral-400 dark:text-neutral-500">
               ({displayedAnswers.length} {displayedAnswers.length === 1 ? "Model" : "Models"})
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-neutral-600 font-medium italic line-clamp-1">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-medium italic line-clamp-1">
             "{activePrompt}"
           </p>
         </div>
 
         {winnerModelId && (
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold">
-            <Trophy className="w-3.5 h-3.5 text-amber-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900/60 text-amber-800 dark:text-amber-300 text-xs font-semibold">
+            <Trophy className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
             <span>Community Best Answer Picked</span>
           </div>
         )}

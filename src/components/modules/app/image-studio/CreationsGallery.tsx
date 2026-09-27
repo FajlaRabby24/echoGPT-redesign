@@ -195,7 +195,7 @@ export default function CreationsGallery({ creations }: CreationsGalleryProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     download
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs sm:text-sm shadow-md transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] text-white font-semibold text-xs sm:text-sm shadow-md transition-colors cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download High Resolution</span>

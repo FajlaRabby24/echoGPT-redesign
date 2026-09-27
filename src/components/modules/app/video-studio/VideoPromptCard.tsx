@@ -298,7 +298,7 @@ export default function VideoPromptCard({
                 type="button"
                 onClick={handleTriggerGenerate}
                 disabled={isGenerating}
-                className="inline-flex items-center justify-center gap-1.5 px-6 py-2 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA]  text-white font-semibold text-xs sm:text-sm shadow-md shadow-purple-600/20 active:scale-95 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center gap-1.5 px-6 py-2 rounded-xl bg-[#4F46E5] hover:bg-[#4338CA] text-white font-semibold text-xs sm:text-sm shadow-md shadow-indigo-500/20 active:scale-95 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isGenerating ? (
                   <>

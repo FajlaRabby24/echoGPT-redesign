@@ -86,7 +86,7 @@ export const aiToolsNavGroup: SidebarNavGroup = {
     {
       id: "job-analysis",
       label: "AI Job Analysis",
-      href: "/app/job-analysis",
+      href: "/app/resume",
       icon: Briefcase,
     },
     {

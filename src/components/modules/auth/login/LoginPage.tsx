@@ -5,12 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, ChevronLeft, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import EmailAuthModal from "../EmailAuthModal";
 
 export default function LoginPage() {
   const [receiveUpdates, setReceiveUpdates] = useState(true);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
 
   return (
     <TooltipProvider delay={150}>
+      <EmailAuthModal
+        isOpen={emailModalOpen}
+        onClose={() => setEmailModalOpen(false)}
+        mode="login"
+      />
       <div className="relative min-h-screen w-full flex items-center justify-center bg-[#FAFAFA] overflow-hidden select-none px-4 py-8">
         {/* ========================================================= */}
         {/* Subtle Decorative Wave & Dot Patterns                     */}
@@ -135,6 +142,7 @@ export default function LoginPage() {
             {/* 1. Sign in with Email */}
             <button
               type="button"
+              onClick={() => setEmailModalOpen(true)}
               className="w-full flex items-center justify-center gap-2.5 px-4 py-3 rounded-2xl border border-neutral-200/90 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 text-neutral-800 text-xs sm:text-sm font-semibold transition-all shadow-2xs hover:shadow-xs active:scale-[0.99] cursor-pointer"
             >
               <Mail className="w-4 h-4 text-neutral-600 shrink-0" />

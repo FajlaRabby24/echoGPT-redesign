@@ -157,7 +157,7 @@ export const moreNavItems: SidebarNavItem[] = [
   {
     id: "discord",
     label: "Discord",
-    href: "https://discord.com/invite/JG8SXMtaeH",
+    href: "https://discord.com",
     icon: MessageCircle,
     external: true,
   },

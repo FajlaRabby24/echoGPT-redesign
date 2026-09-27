@@ -13,9 +13,11 @@ import {
   Settings,
   Shield,
   ChevronDown,
+  Search,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { Input } from "@/components/ui/input";
 
 interface TopbarProps {
   onOpenMobileSidebar?: () => void;
@@ -85,10 +87,10 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
   return (
     <header className="sticky top-0 z-30 h-14 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800 px-3 sm:px-6 flex items-center justify-between transition-all select-none">
       {/* ========================================================= */}
-      {/* 1. Left Section: Mobile Menu / Brand Logo                 */}
+      {/* 1. Left Section: Mobile Menu / Brand Logo & Search Input  */}
       {/* ========================================================= */}
-      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-        <div className="flex lg:hidden items-center gap-2">
+      <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1 max-w-xs sm:max-w-sm md:max-w-md mr-2">
+        <div className="flex lg:hidden items-center gap-2 shrink-0">
           <button
             onClick={onOpenMobileSidebar}
             className="p-1.5 -ml-1 rounded-xl text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 active:scale-95 transition-all cursor-pointer"
@@ -108,55 +110,41 @@ export default function Topbar({ onOpenMobileSidebar }: TopbarProps) {
                 className="object-contain"
               />
             </div>
-            <span className="font-bold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 tracking-tight">
+            <span className="font-bold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 tracking-tight hidden xs:inline">
               EchoGPT
             </span>
           </Link>
+        </div>
+
+        {/* Left-Aligned Responsive Search Bar Using @/components/ui/input */}
+        <div className="relative flex-1 min-w-0 flex items-center">
+          <div className="absolute inset-y-0 left-0 pl-2.5 sm:pl-3 flex items-center pointer-events-none text-neutral-400 dark:text-neutral-500 z-10">
+            <Search className="w-3.5 h-3.5" />
+          </div>
+          <Input
+            type="search"
+            placeholder="Search chats, tools, models..."
+            className="h-8.5 sm:h-9 w-full pl-8 sm:pl-9 pr-7 sm:pr-10 text-xs rounded-full bg-neutral-100/70 dark:bg-neutral-800/60 border-neutral-200/80 dark:border-neutral-700/80 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus-visible:bg-white dark:focus-visible:bg-neutral-900 focus-visible:ring-indigo-500/20 focus-visible:border-indigo-500 transition-all duration-200"
+          />
+          <div className="absolute inset-y-0 right-0 pr-2 sm:pr-2.5 hidden sm:flex items-center pointer-events-none">
+            <kbd className="inline-flex items-center px-1.5 py-0.5 text-[9px] font-semibold text-neutral-400 dark:text-neutral-500 bg-neutral-200/60 dark:bg-neutral-700/60 rounded border border-neutral-300/60 dark:border-neutral-600/60">
+              ⌘K
+            </kbd>
+          </div>
         </div>
       </div>
 
       {/* ========================================================= */}
       {/* 2. Right Section: Quick Actions, Pro Badge & Auth Profile */}
       {/* ========================================================= */}
-      <div className="flex items-center gap-2 sm:gap-2.5">
+      <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
         {/* Animated Theme Toggler directly inside Topbar */}
         <AnimatedThemeToggler
           variant="circle"
           duration={400}
-          className="p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors cursor-pointer [&>svg]:w-4 [&>svg]:h-4"
+          className="p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors cursor-pointer [&>svg]:w-4 [&>svg]:h-4 shrink-0"
           title="Toggle Dark / Light Mode"
         />
-
-        {/* Help / Docs Action Button */}
-        <Link
-          href="/faq"
-          className="hidden sm:flex p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors"
-          title="Help & Support"
-        >
-          <HelpCircle className="w-4 h-4" />
-        </Link>
-
-        {/* Share Button */}
-        <button
-          onClick={() => {
-            if (navigator.clipboard) {
-              navigator.clipboard.writeText(window.location.href);
-            }
-          }}
-          className="hidden sm:flex p-2 rounded-xl text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 transition-colors cursor-pointer"
-          title="Share conversation"
-        >
-          <Share2 className="w-4 h-4" />
-        </button>
-
-        {/* Upgrade / Pro Pill Badge */}
-        <Link
-          href="/pricing"
-          className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-950/40 dark:to-violet-950/40 hover:from-indigo-100 hover:to-violet-100 dark:hover:from-indigo-900/50 dark:hover:to-violet-900/50 border border-indigo-200/60 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold shadow-2xs transition-all"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-          <span>Pro</span>
-        </Link>
 
         {/* Dynamic Auth Section: Profile Icon when logged in, Sign In when unauthenticated */}
         {isLoggedIn ? (

@@ -65,7 +65,7 @@ export default function CompareInputCard({
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 select-none">
-      <div className="w-full rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:shadow-md transition-all duration-200 p-4 sm:p-5 space-y-4">
+      <div className="w-full rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-200 p-4 sm:p-5 space-y-4">
         {/* ========================================================= */}
         {/* 1. Prompt Textarea Input                                 */}
         {/* ========================================================= */}
@@ -75,27 +75,27 @@ export default function CompareInputCard({
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Message 5 models..."
-          className="w-full bg-transparent text-sm sm:text-base text-neutral-900 placeholder:text-neutral-400 focus:outline-none resize-none leading-relaxed"
+          className="w-full bg-transparent text-sm sm:text-base text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none resize-none leading-relaxed"
         />
 
         {/* ========================================================= */}
         {/* 2. Bottom Toolbar: Stacked Models Pill + Compare Button  */}
         {/* ========================================================= */}
-        <div className="pt-2 border-t border-neutral-100 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+        <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
           {/* Left: Overlapping Model Avatars Pill */}
           <div className="relative" ref={managerRef}>
             <Tooltip>
               <TooltipTrigger
                 type="button"
                 onClick={() => setModelManagerOpen(!modelManagerOpen)}
-                className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-neutral-200/90 bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-semibold shadow-2xs transition-colors cursor-pointer group"
+                className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs font-semibold shadow-2xs transition-colors cursor-pointer group"
               >
                 {/* Overlapping circular avatars */}
                 <div className="flex -space-x-1.5 overflow-hidden py-0.5">
                   {selectedModels.map((model) => (
                     <div
                       key={model.id}
-                      className="relative w-4.5 h-4.5 rounded-full bg-white ring-1.5 ring-white overflow-hidden shrink-0 shadow-2xs"
+                      className="relative w-4.5 h-4.5 rounded-full bg-white dark:bg-neutral-800 ring-1.5 ring-white dark:ring-neutral-800 overflow-hidden shrink-0 shadow-2xs"
                     >
                       <Image
                         fill
@@ -109,12 +109,12 @@ export default function CompareInputCard({
                 </div>
 
                 {/* Model Stack Label */}
-                <span className="text-neutral-900 font-semibold">
+                <span className="text-neutral-900 dark:text-neutral-100 font-semibold">
                   {selectedModels[0]?.name || "EchoGPT"} +{Math.max(0, selectedModels.length - 1)} more
                 </span>
 
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 transition-transform duration-200 ${
+                  className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-transform duration-200 ${
                     modelManagerOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -132,16 +132,16 @@ export default function CompareInputCard({
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 6, scale: 0.98 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="absolute left-0 bottom-full mb-2 w-72 sm:w-80 bg-white rounded-2xl border border-neutral-200/80 shadow-2xl p-2 z-50 overflow-hidden"
+                  className="absolute left-0 bottom-full mb-2 w-72 sm:w-80 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200/80 dark:border-neutral-800 shadow-2xl p-2 z-50 overflow-hidden"
                 >
-                  <div className="flex items-center justify-between px-2 py-1.5 border-b border-neutral-100 mb-1">
-                    <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+                  <div className="flex items-center justify-between px-2 py-1.5 border-b border-neutral-100 dark:border-neutral-800 mb-1">
+                    <span className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
                       Selected Models ({selectedModels.length}/5)
                     </span>
                     <button
                       type="button"
                       onClick={() => setModelManagerOpen(false)}
-                      className="text-neutral-400 hover:text-neutral-700 p-0.5 rounded-full cursor-pointer"
+                      className="text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 p-0.5 rounded-full cursor-pointer"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -159,12 +159,12 @@ export default function CompareInputCard({
                           onClick={() => onToggleModel(model)}
                           className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-all cursor-pointer ${
                             isSelected
-                              ? "bg-indigo-50/80 text-indigo-950 font-semibold"
-                              : "hover:bg-neutral-100/70 text-neutral-700"
+                              ? "bg-indigo-50/80 dark:bg-indigo-950/60 text-indigo-950 dark:text-indigo-200 font-semibold"
+                              : "hover:bg-neutral-100/70 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
                           }`}
                         >
                           <div className="flex items-center gap-2 min-w-0">
-                            <div className="relative w-5 h-5 rounded-full bg-white border border-neutral-200/80 overflow-hidden shrink-0 shadow-2xs">
+                            <div className="relative w-5 h-5 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700 overflow-hidden shrink-0 shadow-2xs">
                               <Image
                                 fill
                                 src={model.iconSrc}
@@ -174,17 +174,17 @@ export default function CompareInputCard({
                               />
                             </div>
                             <div className="min-w-0">
-                              <p className="text-xs font-semibold truncate">
+                              <p className="text-xs font-semibold truncate text-neutral-900 dark:text-neutral-100">
                                 {model.name}
                               </p>
-                              <p className="text-[10px] text-neutral-400 truncate">
+                              <p className="text-[10px] text-neutral-400 dark:text-neutral-500 truncate">
                                 {model.provider} · {model.speed}
                               </p>
                             </div>
                           </div>
 
                           {isSelected && (
-                            <Check className="w-4 h-4 text-indigo-600 shrink-0" />
+                            <Check className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
                           )}
                         </button>
                       );

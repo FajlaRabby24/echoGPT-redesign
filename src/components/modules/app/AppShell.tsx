@@ -1,11 +1,9 @@
 "use client";
 
-import { Menu, Plus } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Topbar from "./Topbar";
 import Sidebar from "./Sidebar";
-import Image from "next/image";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,48 +30,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* ========================================================= */}
-      {/* 2. Mobile & Tablet Sticky Top Navigation Bar (< lg)     */}
+      {/* 2. Main Page Content Viewport with Sticky Topbar         */}
       {/* ========================================================= */}
-      <header className="lg:hidden fixed top-0 inset-x-0 z-30 h-14 bg-white/90 backdrop-blur-md border-b border-neutral-200/80 px-4 flex items-center justify-between">
-        {/* Left: Mobile Menu Toggle Button */}
-        <div className="flex items-center gap-2.5">
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="p-2 -ml-1 rounded-xl text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100/80 active:scale-95 transition-all cursor-pointer"
-            aria-label="Open sidebar menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center shadow-2xs shrink-0">
-              <Image
-                fill
-                alt="EchoGPT logo"
-                loading="eager"
-                src="/EchoGPT.png"
-                sizes="28px"
-                className="object-contain"
-              />
-            </div>
-            <span className="font-bold text-sm sm:text-base text-neutral-900 tracking-tight">
-              EchoGPT
-            </span>
-          </Link>
-        </div>
-
-        {/* Right: Quick + New Chat Button on Mobile */}
-        <div className="flex items-center gap-2">
-          <Link
-            href="/app"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#4F46E5] text-white text-xs font-semibold shadow-xs hover:bg-[#4338CA] active:scale-95 transition-all"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">New Chat</span>
-          </Link>
-        </div>
-      </header>
+      <div className="flex-1 flex flex-col lg:pl-64 xl:pl-72 min-w-0">
+        <Topbar onOpenMobileSidebar={() => setMobileOpen(true)} />
+        <main className="flex-1 flex flex-col min-w-0">
+          {children}
+        </main>
+      </div>
 
       {/* ========================================================= */}
       {/* 3. Animated Mobile & Tablet Drawer (Framer Motion)       */}
@@ -113,13 +77,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         )}
       </AnimatePresence>
-
-      {/* ========================================================= */}
-      {/* 4. Main Page Content Viewport                            */}
-      {/* ========================================================= */}
-      <main className="flex-1 flex flex-col lg:pl-64 xl:pl-72 min-w-0 pt-14 lg:pt-0">
-        {children}
-      </main>
     </div>
   );
 }

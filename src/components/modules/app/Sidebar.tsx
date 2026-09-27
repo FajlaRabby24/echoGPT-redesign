@@ -14,12 +14,12 @@ import {
 } from "@/lib/sidebarNavLinks";
 import {
   Plus,
-  Zap,
   ChevronDown,
   MoreHorizontal,
   ExternalLink,
   X,
 } from "lucide-react";
+import Image from "next/image";
 
 interface SidebarProps {
   onClose?: () => void;
@@ -127,7 +127,10 @@ const NavSection = ({
   );
 };
 
-export default function Sidebar({ onClose, showCloseButton = false }: SidebarProps) {
+export default function Sidebar({
+  onClose,
+  showCloseButton = false,
+}: SidebarProps) {
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = useState(true);
 
@@ -140,8 +143,15 @@ export default function Sidebar({ onClose, showCloseButton = false }: SidebarPro
           onClick={onClose}
           className="flex items-center gap-2 group"
         >
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-600 to-violet-600 text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
-            <Zap className="w-4 h-4 fill-white text-white" />
+          <div className="relative w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0">
+            <Image
+              fill
+              alt="EchoGPT logo"
+              loading="eager"
+              src="/EchoGPT.png"
+              sizes="32px"
+              className="object-contain"
+            />
           </div>
           <span className="font-bold text-base text-neutral-900 tracking-tight">
             EchoGPT

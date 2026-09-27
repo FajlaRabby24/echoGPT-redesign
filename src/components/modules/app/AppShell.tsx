@@ -1,10 +1,11 @@
 "use client";
 
-import { Menu, Plus, Zap } from "lucide-react";
+import { Menu, Plus } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import Image from "next/image";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -46,8 +47,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-600 text-white flex items-center justify-center shadow-2xs">
-              <Zap className="w-3.5 h-3.5 fill-white text-white" />
+            <div className="relative w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center shadow-2xs shrink-0">
+              <Image
+                fill
+                alt="EchoGPT logo"
+                loading="eager"
+                src="/EchoGPT.png"
+                sizes="28px"
+                className="object-contain"
+              />
             </div>
             <span className="font-bold text-sm sm:text-base text-neutral-900 tracking-tight">
               EchoGPT

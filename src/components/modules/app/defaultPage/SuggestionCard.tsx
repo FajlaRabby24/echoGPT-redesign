@@ -21,12 +21,7 @@ export default function SuggestionCard({
   const Icon = suggestion.icon;
 
   return (
-    <Tooltip>
-      <TooltipTrigger
-        type="button"
-        onClick={() => onSelect(suggestion.prompt)}
-        className="group relative w-full text-left p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/80 hover:border-indigo-300 shadow-2xs hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer flex flex-col justify-between select-none"
-      >
+    <div className="group relative w-full text-left p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/80 hover:border-indigo-300 shadow-2xs hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer flex flex-col justify-between select-none">
         {/* Card Top: Icon, Tag Badge, and Arrow Indicator */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2.5">
@@ -52,10 +47,6 @@ export default function SuggestionCard({
             {suggestion.description}
           </p>
         </div>
-      </TooltipTrigger>
-      <TooltipContent side="top" className="text-xs">
-        Click to insert prompt
-      </TooltipContent>
-    </Tooltip>
+        </div>
   );
 }

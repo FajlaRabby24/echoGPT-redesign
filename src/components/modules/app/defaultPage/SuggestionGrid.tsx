@@ -14,7 +14,7 @@ export default function SuggestionGrid({
   onSelectPrompt,
 }: SuggestionGridProps) {
   return (
-    <div className="w-full max-w-4xl mx-auto px-4">
+    <div className="w-full max-w-4xl mx-auto px-4 hidden md:block">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
         {suggestions.map((item) => (
           <SuggestionCard

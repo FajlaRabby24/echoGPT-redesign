@@ -35,7 +35,7 @@ export default function DefaultPage() {
             value={prompt}
             onChange={setPrompt}
             onSubmit={handleSubmit}
-            placeholder="Ask a question or enter a prompt..."
+            placeholder="Ask anything..."
           />
           <p className="text-[11px] text-center text-neutral-400 select-none">
             EchoGPT 2.0 can make mistakes. Verify critical facts and data sources.

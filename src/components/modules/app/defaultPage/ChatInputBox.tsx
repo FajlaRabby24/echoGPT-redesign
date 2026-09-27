@@ -12,18 +12,74 @@ import {
   Plus,
   History,
   Sparkles,
+  Check,
 } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+export interface ModelOption {
+  id: string;
+  name: string;
+  provider: string;
+  badge: string;
+  iconSrc: string;
+  description: string;
+}
+
+export const AVAILABLE_MODELS: ModelOption[] = [
+  {
+    id: "echogpt",
+    name: "EchoGPT 2.0",
+    provider: "Echo Team",
+    badge: "Smart Multi-Model",
+    iconSrc: "/EchoGPT.png",
+    description: "Orchestrated multi-model intelligence",
+  },
+  {
+    id: "chatgpt",
+    name: "GPT-4o",
+    provider: "OpenAI",
+    badge: "Omni & Fast",
+    iconSrc: "/chatgpt.svg",
+    description: "High speed, versatile reasoning",
+  },
+  {
+    id: "gemini",
+    name: "Gemini 1.5 Pro",
+    provider: "Google",
+    badge: "2M Context",
+    iconSrc: "/gemini.svg",
+    description: "Massive context window & research",
+  },
+  {
+    id: "deepseek",
+    name: "DeepSeek R1",
+    provider: "DeepSeek",
+    badge: "Reasoning",
+    iconSrc: "/depseek.ico",
+    description: "Advanced logic & mathematical reasoning",
+  },
+  {
+    id: "grok",
+    name: "Grok 2",
+    provider: "xAI",
+    badge: "Real-time",
+    iconSrc: "/grok.ico",
+    description: "Real-time knowledge and witty responses",
+  },
+];
+
 interface ChatInputBoxProps {
   value: string;
   onChange: (val: string) => void;
   onSubmit: (prompt: string) => void;
   placeholder?: string;
+  selectedModel?: ModelOption;
+  onSelectModel?: (model: ModelOption) => void;
 }
 
 export default function ChatInputBox({
@@ -31,11 +87,40 @@ export default function ChatInputBox({
   onChange,
   onSubmit,
   placeholder = "Ask a question...",
+  selectedModel: controlledSelectedModel,
+  onSelectModel,
 }: ChatInputBoxProps) {
+  const [internalModel, setInternalModel] = useState<ModelOption>(
+    AVAILABLE_MODELS[0]
+  );
+  const activeModel = controlledSelectedModel ?? internalModel;
+
+  const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
+  const modelDropdownRef = useRef<HTMLDivElement>(null);
+
   const [isFocused, setIsFocused] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        modelDropdownRef.current &&
+        !modelDropdownRef.current.contains(event.target as Node)
+      ) {
+        setModelDropdownOpen(false);
+      }
+    }
+
+    if (modelDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modelDropdownOpen]);
 
   // Auto-resize textarea based on input content
   useEffect(() => {
@@ -69,6 +154,15 @@ export default function ChatInputBox({
     }, 400);
   };
 
+  const handleSelectModel = (model: ModelOption) => {
+    if (onSelectModel) {
+      onSelectModel(model);
+    } else {
+      setInternalModel(model);
+    }
+    setModelDropdownOpen(false);
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto px-4 select-none">
       <div
@@ -84,26 +178,94 @@ export default function ChatInputBox({
         <div className="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-neutral-100/90 bg-neutral-50/40 rounded-t-2xl">
           {/* Left: Model Pill & Actions */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Model Selector Pill */}
-            <Tooltip>
-              <TooltipTrigger
-                type="button"
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white border border-neutral-200/80 hover:border-neutral-300 text-neutral-800 text-xs font-semibold shadow-2xs hover:bg-neutral-50 transition-colors cursor-pointer"
-              >
-                <div className="relative w-4 h-4 rounded overflow-hidden shrink-0">
-                  <Image
-                    fill
-                    src="/EchoGPT.png"
-                    alt="EchoGPT logo"
-                    sizes="16px"
-                    className="object-contain"
+            {/* Model Selector Pill with Dropdown */}
+            <div className="relative" ref={modelDropdownRef}>
+              <Tooltip>
+                <TooltipTrigger
+                  type="button"
+                  onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white border border-neutral-200/80 hover:border-neutral-300 text-neutral-800 text-xs font-semibold shadow-2xs hover:bg-neutral-50 transition-colors cursor-pointer group"
+                >
+                  <div className="relative w-4 h-4 rounded overflow-hidden shrink-0">
+                    <Image
+                      fill
+                      src={activeModel.iconSrc}
+                      alt={activeModel.name}
+                      sizes="16px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <span>{activeModel.name}</span>
+                  <ChevronDown
+                    className={`w-3 h-3 text-neutral-400 group-hover:text-neutral-700 transition-transform duration-200 ${
+                      modelDropdownOpen ? "rotate-180" : ""
+                    }`}
                   />
-                </div>
-                <span>EchoGPT</span>
-                <ChevronDown className="w-3 h-3 text-neutral-400" />
-              </TooltipTrigger>
-              <TooltipContent side="top">Active Model Engine</TooltipContent>
-            </Tooltip>
+                </TooltipTrigger>
+                <TooltipContent side="top">Select AI Engine</TooltipContent>
+              </Tooltip>
+
+              {/* Animated Model Selector Dropdown Popover */}
+              <AnimatePresence>
+                {modelDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="absolute left-0 bottom-full mb-2 w-72 sm:w-80 bg-white rounded-2xl border border-neutral-200/80 shadow-2xl shadow-neutral-900/10 p-1.5 z-50 overflow-hidden"
+                  >
+                    <div className="px-2.5 py-1.5 mb-1 text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+                      Select AI Engine
+                    </div>
+                    <div className="space-y-0.5 max-h-72 overflow-y-auto scrollbar-thin">
+                      {AVAILABLE_MODELS.map((model) => {
+                        const isSelected = activeModel.id === model.id;
+                        return (
+                          <button
+                            key={model.id}
+                            type="button"
+                            onClick={() => handleSelectModel(model)}
+                            className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-all cursor-pointer ${
+                              isSelected
+                                ? "bg-indigo-50/80 text-indigo-950 font-semibold"
+                                : "hover:bg-neutral-100/70 text-neutral-700"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className="relative w-6 h-6 rounded-lg bg-white border border-neutral-200/60 p-1 flex items-center justify-center shrink-0 shadow-2xs">
+                                <Image
+                                  fill
+                                  src={model.iconSrc}
+                                  alt={model.name}
+                                  sizes="24px"
+                                  className="object-contain p-0.5"
+                                />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 truncate">
+                                  <span>{model.name}</span>
+                                  <span className="text-[9px] font-medium text-neutral-400">
+                                    · {model.provider}
+                                  </span>
+                                </div>
+                                <p className="text-[10px] text-neutral-500 truncate">
+                                  {model.description}
+                                </p>
+                              </div>
+                            </div>
+
+                            {isSelected && (
+                              <Check className="w-4 h-4 text-indigo-600 shrink-0 ml-2" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Divider */}
             <div className="h-3.5 w-px bg-neutral-200/80" />

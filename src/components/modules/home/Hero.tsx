@@ -105,7 +105,7 @@ const Hero = () => {
           </Link>
 
           <Link
-            href="#demo"
+            href="/app"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-2 sm:px-8 py-2 sm:py-4 text-sm  font-semibold text-neutral-800 bg-white/85 hover:bg-white active:scale-[0.98] backdrop-blur-md rounded-xl border border-neutral-200/90 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
           >
             <Download

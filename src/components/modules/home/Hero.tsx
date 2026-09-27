@@ -68,7 +68,7 @@ const Hero = () => {
       {/* Main Hero Content */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-w-0 pt-6 sm:pt-14 lg:pt-16 pb-16 sm:pb-20">
         {/* 1. Top Announcement Pill */}
-        <div className=" flex justify-center mb-5 sm:mb-8 max-w-full items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/85 hover:bg-white backdrop-blur-md border border-neutral-200/80 shadow-xs text-xs sm:text-sm font-medium text-neutral-800 transition-all hover:scale-[1.02] active:scale-[0.98] ">
+        <div className=" flex justify-center mb-5 sm:mb-8 max-w-full items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/40 hover:bg-white backdrop-blur-md  shadow-xs text-xs sm:text-sm font-medium text-neutral-800 transition-all hover:scale-[1.02] active:scale-[0.98] ">
           <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-ping shrink-0" />
           <span className="font-semibold text-neutral-900 shrink-0">
             EchoGPT 2.0

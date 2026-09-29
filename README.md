@@ -2,6 +2,8 @@
 
 A modern, responsive, and high-performance redesign of **EchoGPT** - a unified multi-model AI platform bringing together leading LLMs (EchoGPT 2.0, GPT-4o, Gemini 1.5 Pro, DeepSeek R1, Grok 2), generative image & video studios, side-by-side arena comparison, and specialized productivity tools into one cohesive, accessible workspace.
 
+![EchoGPT Platform Screenshot](./public/screenshot.png)
+
 ---
 
 ## 🌟 Table of Contents
